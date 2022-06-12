@@ -1,0 +1,54 @@
+.pageNotes {
+   width: 100%;
+}
+.notesContent {
+   padding: 30px 0;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 20px;
+}
+
+.boxCards {
+   max-width: 400px;
+   background-color: #3498db;
+   color: #fff;
+   border-radius: 10px;
+   padding: 10px;
+   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+}
+
+.boxCards .buttons {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.buttons a {
+   background-color: #fff;
+   margin: 10px;
+   padding: 5px 20px;
+   border-radius: 10px;
+   color: #fff;
+   font-weight: 500;
+   transition: all ease 0.4s;
+}
+.buttons a:nth-child(1) {
+   background-color: #f39c12;
+}
+.buttons a:nth-child(2) {
+   background-color: #aaa;
+}
+
+.buttons a:hover {
+   opacity: 0.7;
+   color: #333;
+}
+
+@media (max-width: 960px) {
+   .notesContent {
+      grid-template-columns: 1fr;
+   }
+
+   .boxCards {
+      max-width: 100%;
+   }
+}
