@@ -11,7 +11,9 @@ html,
 body,
 button {
    font: 400 1rem 'Roboto', sans-serif;
-   background-color: #eee;
+}
+body{
+   overflow-y: hidden;
 }
 
 a {
@@ -25,6 +27,11 @@ li {
 button {
    cursor: pointer;
    border: 0;
+}
+
+main{
+   display: flex;
+   height: 100vh;
 }
 
 /*Responsivo*/
