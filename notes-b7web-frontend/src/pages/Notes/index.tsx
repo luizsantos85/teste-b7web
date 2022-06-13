@@ -1,13 +1,12 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { PageTitle } from '../../components/PageTitle';
 
-import styles from './styles.module.css';
+import styles from './index.module.css';
 
 export const Notes = () => {
    return (
       <div className={styles.pageNotes}>
-         <PageTitle title="Página de Notas" subTitle="Esse é opcional" />
+         <PageTitle title="Página Principal de Notas" subTitle="Subtitle opcional" />
 
          <div className={styles.notesContent}>
             <div

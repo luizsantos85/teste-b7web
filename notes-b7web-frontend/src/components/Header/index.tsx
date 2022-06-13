@@ -11,7 +11,7 @@ export const Header = () => {
                  <Link to="/">Notas</Link>
               </li>
               <li>
-                 <Link to="">Adicionar nota</Link>
+                 <Link to="/add-note">Adicionar nota</Link>
               </li>
 
            </ul>
