@@ -18,6 +18,7 @@ As tecnologias utilizadas foram:
 -   [Sequelize](https://sequelize.org/)
 -   [Express](https://expressjs.com/pt-br/)
 -   [Mysql](https://www.mysql.com/)
+-   [Typescript](https://www.typescriptlang.org/)
 
 ## Instalação
 
@@ -27,7 +28,7 @@ No seu terminal, rode os comandos abaixo:
 
 ```bash
 $ git clone https://github.com/luizsantos85/teste-b7web
-$ cd teste-b7web
+$ cd teste-b7web/notes-b7web-backend
 ```
 
 Instalar depêndencias e executar o back-end:
