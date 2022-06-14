@@ -17,8 +17,11 @@ export const Notes = () => {
         setLoading(false);
     };
 
-    const handleButtonDelete = () => {
-        alert("ID: ");
+    const handleButtonDelete = async (id?: number | string) => {
+        if (window.confirm(`Deseja realmente excluir o item ${id}?`)) {
+            await Api.deleteNote(id);
+            window.location.href = "/";
+        }
     };
 
     useEffect(() => {
@@ -49,7 +52,7 @@ export const Notes = () => {
 
                         <div className={styles.buttons}>
                             <Link to={`/edit/${note.id}`}>Editar</Link>
-                            <button onClick={()=>{}}>
+                            <button onClick={() => handleButtonDelete(note.id)}>
                                 Excluir
                             </button>
                         </div>

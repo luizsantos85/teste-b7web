@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageTitle } from "../../components/PageTitle";
 import { FormPost } from "../../components/FormPost";

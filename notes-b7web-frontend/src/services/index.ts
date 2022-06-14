@@ -41,12 +41,11 @@ export const Api = {
         return json;
     },
 
-    deleteNote: async (id: string) => {
+    deleteNote: async (id?: number | string) => {
         let response = await fetch(`${BASE_API}/note/${id}`, {
             method: "DELETE",
         });
         let json = await response.json();
-
         return json;
     },
 };
