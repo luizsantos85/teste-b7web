@@ -1,43 +1,77 @@
-import { useState, useEffect, ChangeEvent } from 'react';
-import { PageTitle } from '../../components/PageTitle';
+import { useState, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { PageTitle } from "../../components/PageTitle";
+import { Api } from "../../services";
 
-import styles from './notecreate.module.css';
+import styles from "./notecreate.module.css";
 
 export const NoteCreate = () => {
-   const [title, setTitle] = useState('');
-   const [content, setContent] = useState('');
-   const [bgColor, setBgColor] = useState('');
-   const [textColor, setTextColor] = useState('');
+    const navigate = useNavigate();
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+    const [bg_color, setBgColor] = useState("#ffffff");
+    const [text_color, setTextColor] = useState("#000000");
 
-   const handleSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
-      e.preventDefault();
-      setContent('');
-   };
+    const handleFormSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        await Api.addNote({ title, content, bg_color, text_color });
+        navigate("/");
+    };
 
-   return (
-      <div className={styles.createNote}>
-         <PageTitle title="Adicionar Nota" />
+    return (
+        <div className={styles.createNote}>
+            <PageTitle title="Adicionar Nota" />
 
-         <form className={styles.form}>
-            <div className={styles.inputWrapper}>
-               <label htmlFor="">Título da nota</label>
-               <input type="text" />
-            </div>
-            <div className={styles.inputWrapper}>
-               <label htmlFor="">Conteúdo da nota</label>
-               <textarea name="content" id="content"></textarea>
-            </div>
-            <div className={styles.inputWrapper}>
-               <label htmlFor="">Cor do texto</label>
-               <input type="color" />
-            </div>
-            <div className={styles.inputWrapper}>
-               <label htmlFor="">Cor de fundo</label>
-               <input type="color" />
-            </div>
+            <form method="POST" onSubmit={handleFormSubmit}>
+                <div className={styles.form}>
+                    <div className={styles.inputWrapper}>
+                        <label htmlFor="title">Título da nota</label>
+                        <input
+                            type="text"
+                            id="title"
+                            value={title}
+                            onChange={({ target }) => {
+                                setTitle(target.value);
+                            }}
+                        />
+                    </div>
+                    <div className={styles.inputWrapper}>
+                        <label htmlFor="content">Conteúdo da nota</label>
+                        <textarea
+                            name="content"
+                            id="content"
+                            value={content}
+                            onChange={({ target }) => {
+                                setContent(target.value);
+                            }}
+                        />
+                    </div>
+                    <div className={styles.inputWrapper}>
+                        <label htmlFor="textColor">Cor do texto</label>
+                        <input
+                            type="color"
+                            id="textColor"
+                            value={text_color}
+                            onChange={({ target }) => {
+                                setTextColor(target.value);
+                            }}
+                        />
+                    </div>
+                    <div className={styles.inputWrapper}>
+                        <label htmlFor="bgColor">Cor de fundo</label>
+                        <input
+                            type="color"
+                            id="bgColor"
+                            value={bg_color}
+                            onChange={({ target }) => {
+                                setBgColor(target.value);
+                            }}
+                        />
+                    </div>
 
-            <button>Cadastrar</button>
-         </form>
-      </div>
-   );
+                    <button>Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    );
 };

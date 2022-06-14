@@ -1,32 +1,77 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { NoteTypes } from '../../types/NoteTypes';
 import { PageTitle } from '../../components/PageTitle';
+import { Api } from '../../services';
 
 import styles from './index.module.css';
 
 export const Notes = () => {
-   return (
-      <div className={styles.pageNotes}>
-         <PageTitle title="Página Principal de Notas" subTitle="Subtitle opcional" />
+   const [notes, setNotes] = useState<NoteTypes[]>([]);
+   const [loading, setLoading] = useState(false);
+   const [error, setError] = useState('');
 
-         <div className={styles.notesContent}>
-            <div
-               className={styles.boxCards}
-               style={{ color: '#000', backgroundColor: '#fff' }}
-            >
-               <h2>Titulo da nota</h2>
-               <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Repudiandae placeat inventore consectetur veniam totam
-                  molestias fugiat odit, quam dolores porro perferendis nisi
-                  amet esse repellendus, at explicabo fugit? Maxime, minima?
-               </p>
+   const loadNotes = async () => {
+      let json;
+      setLoading(true);
 
-               <div className={styles.buttons}>
-                  <Link to="">Editar</Link>
-                  <Link to="">Excluir</Link>
-               </div>
-            </div>
+      try {
+         json = await Api.getAll();
+         setLoading(false);
+         setNotes(json);
+         if (json.error) throw new Error(json.error);
+      } catch (err) {
+         setLoading(false);
+         setError(json.error);
+      }
+   };
+    
+    const handleButtonDelete = () => {
+        alert('ID: ')
+    }
+
+   useEffect(() => {
+      loadNotes();
+   }, []);
+
+   if (error)
+      return (
+         <div>
+            <h1>{error}</h1>
          </div>
-      </div>
+      );
+
+   return (
+       <div className={styles.pageNotes}>
+           <PageTitle
+               title="Página Principal de Notas"
+               subTitle="Subtitle opcional"
+           />
+
+           <div className={styles.notesContent}>
+               {loading && <h1> Carregando Notas... </h1>}
+
+               {notes.map((note) => (
+                   <div
+                       className={styles.boxCards}
+                       style={{
+                           color: note.text_color,
+                           backgroundColor: note.bg_color,
+                       }}
+                       key={note.id}
+                   >
+                       <h2>{note.title}</h2>
+                       <p>{note.content}</p>
+
+                       <div className={styles.buttons}>
+                           <Link to={`/edit/${note.id}`}>Editar</Link>
+                           <button onClick={handleButtonDelete}>
+                               Excluir
+                           </button>
+                       </div>
+                   </div>
+               ))}
+           </div>
+       </div>
    );
 };
