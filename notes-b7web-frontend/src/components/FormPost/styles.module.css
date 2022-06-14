@@ -60,3 +60,22 @@
    resize: vertical;
    transition: 0.3s;
 }
+
+.form .back{
+    margin-left: 20px;
+    background-color: #aaa;
+    color: #333;
+}
+
+.error{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background-color: #c0392b;
+    color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
