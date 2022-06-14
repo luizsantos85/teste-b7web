@@ -41,7 +41,18 @@ $ npm start
 ## Formato da tabela de banco de dados
 
 ```bash
+===Base de Dados teste-b7web
 
+== Estrutura da tabela notes
+
+|------
+|Coluna|Tipo|Nulo|Predefinido
+|------
+|//**id**//|int|Não|
+|title|varchar(255)|Não|
+|content|text|Não|
+|bg_color|varchar(255)|Sim|#ffffff
+|text_color|varchar(255)|Sim|#000000
 ```
 
 Made by [@luizsantos85](https://github.com/luizsantos85) :rocket:

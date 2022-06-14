@@ -1,0 +1,19 @@
+===Base de Dados teste-b7web
+
+== Estrutura da tabela notes
+
+|------
+|Coluna|Tipo|Nulo|Predefinido
+|------
+|//**id**//|int|Não|
+|title|varchar(255)|Não|
+|content|text|Não|
+|bg_color|varchar(255)|Sim|#ffffff
+|text_color|varchar(255)|Sim|#000000
+== Extraindo dados da tabela notes
+
+|24|teste 2|teste 2|#ffffff|#ff0000
+|25|teste 3|teste 3|#ff0000|#000000
+|26|teste 4|teste 4|#474747|#ae00ff
+|29|teste 7|teste 7|#424267|#ffa200
+|31|teste 8|teste 8|#ffffff|#76f4b3
