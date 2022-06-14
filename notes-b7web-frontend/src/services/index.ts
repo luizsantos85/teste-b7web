@@ -1,6 +1,6 @@
 import { NoteTypes } from "../types/NoteTypes";
 
-export const BASE_API = "http://localhost:4001/api";
+const BASE_API = "http://localhost:4001/api";
 
 export const Api = {
     getAll: async () => {
@@ -9,7 +9,7 @@ export const Api = {
         return json;
     },
 
-    getOneNote: async (id:any) => {
+    getOneNote: async (id: string | undefined) => {
         let response = await fetch(`${BASE_API}/note/${id}`);
         let json = await response.json();
         return json;

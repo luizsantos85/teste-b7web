@@ -7,12 +7,11 @@ import { Api } from "../../services";
 import styles from "./notecreate.module.css";
 
 export const UpdateNote = () => {
+    const { id } = useParams();
     const navigate = useNavigate();
-    let id = useParams();
 
     const [note, setNote] = useState<NoteTypes>();
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -21,32 +20,30 @@ export const UpdateNote = () => {
 
     const handleFormSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        await Api.updateNote({title, content, bg_color, text_color });
-        navigate("/");
+
+        await Api.updateNote({ id, title, content, bg_color, text_color });
+        window.location.href = "/";
     };
 
     const handleBackButton = () => {
-        navigate(-1)
-    }
+        navigate(-1);
+    };
 
-    
     useEffect(() => {
         const loadNote = async () => {
-            let json;
-            
             setLoading(true);
-            try {
-                json = await Api.getOneNote(id);
-                setLoading(false);
-                setNote(json);
-                if (json.error) throw new Error(json.error);
-            } catch (err) {
-                setLoading(false);
-                setError(json.error);
-            }
+            let json = await Api.getOneNote(id);
+            setTitle(json.title);
+            setContent(json.content);
+            setBgColor(json.bg_color);
+            setTextColor(json.text_color);
+            setNote(json);
+            setLoading(false);
         };
         loadNote();
     }, [id]);
+
+    if (loading) return <h1>Carregando...</h1>;
 
     return (
         <div className={styles.createNote}>
@@ -60,7 +57,7 @@ export const UpdateNote = () => {
                             <input
                                 type="text"
                                 id="title"
-                                value={note.title}
+                                value={title}
                                 onChange={({ target }) => {
                                     setTitle(target.value);
                                 }}
